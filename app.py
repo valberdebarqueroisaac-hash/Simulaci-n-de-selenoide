@@ -211,6 +211,25 @@ with tab1:
             fig,
             use_container_width=True
         )
+                st.metric(
+            "Campo Magnético",
+            f"{B:.5e} T"
+        )
+
+        st.metric(
+            "Densidad",
+            f"{n:.2f}"
+        )
+
+        st.metric(
+            "Espiras",
+            N
+        )
+
+        st.metric(
+            "Corriente",
+            f"{I:.2f} A"
+        )
 # ==========================================
 # PESTAÑA 2 - GRÁFICAS
 # ==========================================
@@ -333,25 +352,6 @@ for r in np.linspace(1.8, 3.2, 5):
     )
 with col2:
 
-        st.metric(
-            "Campo Magnético",
-            f"{B:.5e} T"
-        )
-
-        st.metric(
-            "Densidad",
-            f"{n:.2f}"
-        )
-
-        st.metric(
-            "Espiras",
-            N
-        )
-
-        st.metric(
-            "Corriente",
-            f"{I:.2f} A"
-        )
 st.divider()
 
 st.subheader("Intensidad del campo")
