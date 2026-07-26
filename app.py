@@ -274,7 +274,7 @@ for r in np.linspace(1.8, 3.2, 5):
             "Corriente",
             f"{I:.2f} A"
         )
-st.divider()
+        st.divider()
 
 st.subheader("Intensidad del campo")
 
