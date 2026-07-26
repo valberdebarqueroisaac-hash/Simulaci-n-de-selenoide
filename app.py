@@ -246,6 +246,28 @@ for ang in np.linspace(0, 2*np.pi, 16):
             showlegend=False
         )
     )
+    # ===============================
+# Flechas del campo magnético
+# ===============================
+
+for pos in np.linspace(-longitud/2 + 1, longitud/2 - 1, 8):
+
+    fig.add_trace(
+        go.Cone(
+            x=[pos],
+            y=[0],
+            z=[0],
+            u=[1],
+            v=[0],
+            w=[0],
+            sizemode="absolute",
+            sizeref=0.45,
+            colorscale="Blues",
+            showscale=False,
+            anchor="tail",
+            name="Campo"
+        )
+    )
 # ==========================================
 # Líneas del campo magnético
 # ==========================================
