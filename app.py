@@ -225,6 +225,37 @@ st.plotly_chart(
             use_container_width=True
         )
 # ==========================================
+# Líneas del campo magnético
+# ==========================================
+
+if mostrar_campo:
+
+    for radio in [2.2, 2.8, 3.4]:
+
+        t = np.linspace(0, 2*np.pi, 200)
+
+        # Lazo alrededor del solenoide
+        x_campo = (longitud/2 + 0.3) * np.cos(t)
+
+        y_campo = radio * np.sin(t)
+
+        z_campo = np.zeros_like(t)
+
+        fig.add_trace(
+            go.Scatter3d(
+                x=x_campo,
+                y=y_campo,
+                z=z_campo,
+                mode="lines",
+                line=dict(
+                    color="deepskyblue",
+                    width=3
+                ),
+                opacity=0.6,
+                showlegend=False
+            )
+        )
+# ==========================================
 # PESTAÑA 2 - GRÁFICAS
 # ==========================================
 with tab2:
