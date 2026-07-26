@@ -331,7 +331,7 @@ for r in np.linspace(1.8, 3.2, 5):
         )
 
     )
-    with col2:
+with col2:
 
         st.metric(
             "Campo Magnético",
