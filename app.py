@@ -1,8 +1,15 @@
 import streamlit as st
 import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.patches import Circle
 
 # Configuración de la página
-st.set_page_config(page_title="Simulación de Solenoide", layout="wide")
+st.set_page_config(
+    page_title="Simulación del Campo Magnético",
+    page_icon="🧲",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
 st.title("🧲 Simulación del Campo Magnético en un Solenoide")
 
@@ -32,15 +39,39 @@ L = st.sidebar.slider("Longitud (m)", 0.05, 2.0, 0.50, 0.01)
 # Cálculo
 n = N / L
 B = mu0 * n * I
+tab1, tab2, tab3, tab4 = st.tabs([
+    "🧲 Visualización",
+    "📈 Gráficas",
+    "⚖️ Comparación",
+    "✅ Validación"
+])
 
-st.subheader("Resultados")
+with tab1:
 
-col1, col2 = st.columns(2)
+    st.subheader("Resultados")
 
-with col1:
-    st.metric("Campo magnético (T)", f"{B:.6e}")
+    col1, col2 = st.columns(2)
 
-with col2:
-    st.metric("Densidad de espiras (espiras/m)", f"{n:.2f}")
+    with col1:
+        st.metric("Campo Magnético (T)", f"{B:.6e}")
 
-st.success("Mueve los deslizadores de la izquierda para observar cómo cambia el campo magnético.")
+    with col2:
+        st.metric("Densidad de espiras", f"{n:.2f} espiras/m")
+            st.subheader("Visualización del Solenoide")
+
+    fig, ax = plt.subplots(figsize=(12,3))
+
+    vueltas = int(N/20)
+
+    for i in range(vueltas):
+        x = i
+        circ = Circle((x,0),0.45,fill=False,linewidth=2)
+        ax.add_patch(circ)
+
+    ax.set_xlim(-1,vueltas+1)
+    ax.set_ylim(-1,1)
+
+    ax.set_aspect('equal')
+    ax.axis("off")
+
+    st.pyplot(fig)
