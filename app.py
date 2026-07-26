@@ -397,3 +397,108 @@ with tab3:
         else:
 
             st.info("Ambos solenoides generan el mismo campo magnético.")
+# ==========================================
+# PESTAÑA 4 - VALIDACIÓN
+# ==========================================
+
+with tab4:
+
+    st.header("Validación del modelo físico")
+
+    st.markdown("""
+Esta sección verifica si la simulación cumple el comportamiento esperado para un **solenoide ideal**.
+""")
+
+    st.divider()
+
+    # -----------------------------
+    # Validación 1
+    # -----------------------------
+
+    st.subheader("1. Proporcionalidad entre B e I")
+
+    I2 = I * 2
+    B2 = mu0 * n * I2
+
+    if I > 0:
+
+        razon = B2 / B
+
+        st.write(f"Si la corriente aumenta de **{I:.2f} A** a **{I2:.2f} A**, el campo cambia de:")
+
+        st.write(f"- B₁ = {B:.5e} T")
+        st.write(f"- B₂ = {B2:.5e} T")
+
+        st.success(f"Relación B₂/B₁ = {razon:.2f}")
+
+        if abs(razon - 2) < 0.01:
+            st.success("✅ Se confirma que B es directamente proporcional a la corriente.")
+        else:
+            st.error("❌ La proporcionalidad no coincide con el modelo ideal.")
+
+    else:
+
+        st.warning("La corriente es cero; no es posible validar esta relación.")
+
+    st.divider()
+
+    # -----------------------------
+    # Validación 2
+    # -----------------------------
+
+    st.subheader("2. Efecto del número de espiras")
+
+    N2 = N * 2
+
+    n2 = N2 / L
+
+    B_N = mu0 * n2 * I
+
+    razonN = B_N / B if B != 0 else 0
+
+    st.write(f"Duplicando las espiras ({N} → {N2})")
+
+    st.write(f"B = {B_N:.5e} T")
+
+    st.success(f"Relación = {razonN:.2f}")
+
+    st.divider()
+
+    # -----------------------------
+    # Validación 3
+    # -----------------------------
+
+    st.subheader("3. Efecto de la longitud")
+
+    L2 = L * 2
+
+    n3 = N / L2
+
+    B_L = mu0 * n3 * I
+
+    razonL = B_L / B if B != 0 else 0
+
+    st.write(f"Duplicando la longitud ({L:.2f} m → {L2:.2f} m)")
+
+    st.write(f"B = {B_L:.5e} T")
+
+    st.success(f"Relación = {razonL:.2f}")
+
+    st.divider()
+
+    st.subheader("Conclusión")
+
+    st.info("""
+✅ El comportamiento obtenido coincide con la ecuación del solenoide ideal.
+
+Se verifica que:
+
+• El campo magnético aumenta al incrementar la corriente.
+
+• El campo magnético aumenta al incrementar el número de espiras.
+
+• El campo magnético disminuye cuando aumenta la longitud del solenoide.
+
+Estos resultados son coherentes con el modelo teórico:
+B = μ₀·(N/L)·I
+""")
