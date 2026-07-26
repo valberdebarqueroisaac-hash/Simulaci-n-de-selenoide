@@ -176,7 +176,47 @@ with tab1:
                 name="Solenoide"
             )
         )
+# ==========================================
+# Líneas del campo magnético
+# ==========================================
 
+intensidad = max(4, int(B * 800000))
+
+for r in np.linspace(1.8, 3.2, 5):
+
+    theta2 = np.linspace(0, 2*np.pi, 120)
+
+    x2 = np.linspace(-longitud/2, longitud/2, 120)
+
+    y2 = r*np.cos(theta2)
+
+    z2 = r*np.sin(theta2)
+
+    fig.add_trace(
+
+        go.Scatter3d(
+
+            x=x2,
+            y=y2,
+            z=z2,
+
+            mode="lines",
+
+            line=dict(
+
+                color="cyan",
+
+                width=intensidad
+
+            ),
+
+            opacity=0.35,
+
+            showlegend=False
+
+        )
+
+    )
         fig.update_layout(
 
             height=650,
@@ -234,3 +274,15 @@ with tab1:
             "Corriente",
             f"{I:.2f} A"
         )
+st.divider()
+
+st.subheader("Intensidad del campo")
+
+if B < 0.001:
+    st.info("🟦 Campo magnético débil")
+elif B < 0.003:
+    st.success("🟩 Campo magnético medio")
+elif B < 0.006:
+    st.warning("🟨 Campo magnético fuerte")
+else:
+    st.error("🟥 Campo magnético muy intenso")
