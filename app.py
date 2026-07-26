@@ -127,3 +127,110 @@ tab1, tab2, tab3, tab4 = st.tabs([
     "⚖️ Comparación",
     "✅ Validación"
 ])
+# ==========================================
+# PESTAÑA 1
+# ==========================================
+
+with tab1:
+
+    st.subheader("Visualización del Solenoide")
+
+    col1, col2 = st.columns([3,1])
+
+    with col1:
+
+        vueltas = max(5, int(N/20))
+
+        theta = np.linspace(
+            0,
+            vueltas*2*np.pi,
+            800
+        )
+
+        radio = 1
+
+        longitud = L*8
+
+        x = np.linspace(
+            -longitud/2,
+            longitud/2,
+            len(theta)
+        )
+
+        y = radio*np.cos(theta)
+
+        z = radio*np.sin(theta)
+
+        fig = go.Figure()
+
+        fig.add_trace(
+            go.Scatter3d(
+                x=x,
+                y=y,
+                z=z,
+                mode="lines",
+                line=dict(
+                    color="orange",
+                    width=8
+                ),
+                name="Solenoide"
+            )
+        )
+
+        fig.update_layout(
+
+            height=650,
+
+            scene=dict(
+
+                xaxis_visible=False,
+                yaxis_visible=False,
+                zaxis_visible=False,
+
+                bgcolor="black",
+
+                camera=dict(
+                    eye=dict(
+                        x=1.8,
+                        y=1.5,
+                        z=1
+                    )
+                )
+
+            ),
+
+            margin=dict(
+                l=0,
+                r=0,
+                b=0,
+                t=0
+            )
+
+        )
+
+        st.plotly_chart(
+            fig,
+            use_container_width=True
+        )
+
+    with col2:
+
+        st.metric(
+            "Campo Magnético",
+            f"{B:.5e} T"
+        )
+
+        st.metric(
+            "Densidad",
+            f"{n:.2f}"
+        )
+
+        st.metric(
+            "Espiras",
+            N
+        )
+
+        st.metric(
+            "Corriente",
+            f"{I:.2f} A"
+        )
