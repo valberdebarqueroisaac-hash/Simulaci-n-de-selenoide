@@ -247,7 +247,7 @@ with tab2:
     # B vs Espiras
     # ==========================
 
-    with col2:
+with col2:
 
         st.metric(
         "Campo Magnético",
@@ -351,11 +351,10 @@ for r in np.linspace(1.8, 3.2, 5):
         )
 
     )
-with col2:
 
-st.divider()
+    st.divider()
 
-st.subheader("Intensidad del campo")
+    st.subheader("Intensidad del campo")
 
 if B < 0.001:
     st.info("🟦 Campo magnético débil")
