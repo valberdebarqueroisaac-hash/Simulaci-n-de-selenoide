@@ -241,6 +241,59 @@ for ang in np.linspace(0, 2*np.pi, 16):
             showlegend=False
         )
     )
+# ===============================
+# Flechas del campo magnético
+# ===============================
+
+for pos in np.linspace(-longitud/2 + 1, longitud/2 - 1, 8):
+
+    fig.add_trace(
+        go.Cone(
+            x=[pos],
+            y=[0],
+            z=[0],
+            u=[1],
+            v=[0],
+            w=[0],
+            sizemode="absolute",
+            sizeref=0.45,
+            colorscale="Blues",
+            showscale=False,
+            anchor="tail",
+            name="Campo"
+        )
+    )
+# ==========================================
+# Líneas del campo magnético
+# ==========================================
+
+if mostrar_campo:
+
+    for radio in [2.2, 2.8, 3.4]:
+
+        t = np.linspace(0, 2*np.pi, 200)
+
+        # Lazo alrededor del solenoide
+        x_campo = (longitud/2 + 0.3) * np.cos(t)
+
+        y_campo = radio * np.sin(t)
+
+        z_campo = np.zeros_like(t)
+
+        fig.add_trace(
+            go.Scatter3d(
+                x=x_campo,
+                y=y_campo,
+                z=z_campo,
+                mode="lines",
+                line=dict(
+                    color="deepskyblue",
+                    width=3
+                ),
+                opacity=0.6,
+                showlegend=False
+            )
+        )
 st.plotly_chart(
             fig,
             use_container_width=True
@@ -267,7 +320,7 @@ for ang in np.linspace(0, 2*np.pi, 16):
             showlegend=False
         )
     )
-    # ===============================
+# ===============================
 # Flechas del campo magnético
 # ===============================
 
