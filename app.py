@@ -212,6 +212,85 @@ with tab1:
             use_container_width=True
         )
 # ==========================================
+# PESTAÑA 2 - GRÁFICAS
+# ==========================================
+
+with tab2:
+
+    st.header("Análisis Gráfico")
+
+    col1, col2 = st.columns(2)
+
+    # ==========================
+    # B vs Corriente
+    # ==========================
+
+    with col1:
+
+        corriente = np.linspace(0,10,100)
+
+        B_I = mu0*(N/L)*corriente
+
+        fig1 = plt.figure(figsize=(6,4))
+
+        plt.plot(corriente,B_I,label="B vs I",linewidth=2)
+
+        plt.scatter(I,B,color="red",s=70)
+
+        plt.xlabel("Corriente (A)")
+        plt.ylabel("Campo Magnético (T)")
+        plt.grid(True)
+
+        st.pyplot(fig1)
+
+    # ==========================
+    # B vs Espiras
+    # ==========================
+
+    with col2:
+
+        espiras = np.linspace(10,2000,100)
+
+        B_N = mu0*(espiras/L)*I
+
+        fig2 = plt.figure(figsize=(6,4))
+
+        plt.plot(espiras,B_N,linewidth=2)
+
+        plt.scatter(N,B,color="red",s=70)
+
+        plt.xlabel("Número de espiras")
+
+        plt.ylabel("Campo Magnético (T)")
+
+        plt.grid(True)
+
+        st.pyplot(fig2)
+
+    st.divider()
+
+    # ==========================
+    # B vs Longitud
+    # ==========================
+
+    longitud = np.linspace(0.05,2,100)
+
+    B_L = mu0*(N/longitud)*I
+
+    fig3 = plt.figure(figsize=(10,4))
+
+    plt.plot(longitud,B_L,linewidth=2)
+
+    plt.scatter(L,B,color="red",s=80)
+
+    plt.xlabel("Longitud (m)")
+
+    plt.ylabel("Campo Magnético (T)")
+
+    plt.grid(True)
+
+    st.pyplot(fig3)
+# ==========================================
 # Líneas del campo magnético
 # ==========================================
 
