@@ -224,6 +224,33 @@ st.plotly_chart(
             fig,
             use_container_width=True
         )
+# ============================
+# Núcleo del solenoide
+# ============================
+
+theta_cil = np.linspace(0, 2*np.pi, 40)
+x_cil = np.linspace(-longitud/2, longitud/2, 25)
+
+theta_cil, x_cil = np.meshgrid(theta_cil, x_cil)
+
+radio_cil = 0.8
+
+y_cil = radio_cil * np.cos(theta_cil)
+z_cil = radio_cil * np.sin(theta_cil)
+
+fig.add_trace(
+    go.Surface(
+        x=x_cil,
+        y=y_cil,
+        z=z_cil,
+        colorscale=[
+            [0, "#B0B0B0"],
+            [1, "#D9D9D9"]
+        ],
+        showscale=False,
+        opacity=0.65
+    )
+)
 # ==========================================
 # Líneas del campo magnético
 # ==========================================
