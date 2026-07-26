@@ -214,7 +214,6 @@ with tab1:
 # ==========================================
 # PESTAÑA 2 - GRÁFICAS
 # ==========================================
-
 with tab2:
 
     st.header("Análisis Gráfico")
@@ -224,19 +223,14 @@ with tab2:
     # ==========================
     # B vs Corriente
     # ==========================
-
     with col1:
 
-        corriente = np.linspace(0,10,100)
-
-        B_I = mu0*(N/L)*corriente
+        corriente = np.linspace(0, 10, 100)
+        B_I = mu0 * (N / L) * corriente
 
         fig1 = plt.figure(figsize=(6,4))
-
-        plt.plot(corriente,B_I,label="B vs I",linewidth=2)
-
-        plt.scatter(I,B,color="red",s=70)
-
+        plt.plot(corriente, B_I, label="B vs I", linewidth=2)
+        plt.scatter(I, B, color="red", s=70)
         plt.xlabel("Corriente (A)")
         plt.ylabel("Campo Magnético (T)")
         plt.grid(True)
@@ -246,121 +240,33 @@ with tab2:
     # ==========================
     # B vs Espiras
     # ==========================
+    with col2:
 
-with col2:
-
-        st.metric(
-        "Campo Magnético",
-        f"{B:.5e} T"
-    )
-
-        st.metric(
-        "Densidad",
-        f"{n:.2f}"
-    )
-
-        st.metric(
-        "Espiras",
-        N
-    )
-
-        st.metric(
-        "Corriente",
-        f"{I:.2f} A"
-    )
-
-        espiras = np.linspace(10,2000,100)
-
-        B_N = mu0*(espiras/L)*I
+        espiras = np.linspace(10, 2000, 100)
+        B_N = mu0 * (espiras / L) * I
 
         fig2 = plt.figure(figsize=(6,4))
-
-        plt.plot(espiras,B_N,linewidth=2)
-
-        plt.scatter(N,B,color="red",s=70)
-
+        plt.plot(espiras, B_N, linewidth=2)
+        plt.scatter(N, B, color="red", s=70)
         plt.xlabel("Número de espiras")
-
         plt.ylabel("Campo Magnético (T)")
-
         plt.grid(True)
 
         st.pyplot(fig2)
 
-st.divider()
+    st.divider()
 
     # ==========================
     # B vs Longitud
     # ==========================
-
-    longitud = np.linspace(0.05,2,100)
-
-    B_L = mu0*(N/longitud)*I
+    longitud = np.linspace(0.05, 2, 100)
+    B_L = mu0 * (N / longitud) * I
 
     fig3 = plt.figure(figsize=(10,4))
-
-    plt.plot(longitud,B_L,linewidth=2)
-
-    plt.scatter(L,B,color="red",s=80)
-
+    plt.plot(longitud, B_L, linewidth=2)
+    plt.scatter(L, B, color="red", s=80)
     plt.xlabel("Longitud (m)")
-
     plt.ylabel("Campo Magnético (T)")
-
     plt.grid(True)
 
     st.pyplot(fig3)
-# ==========================================
-# Líneas del campo magnético
-# ==========================================
-
-intensidad = max(4, int(B * 800000))
-
-for r in np.linspace(1.8, 3.2, 5):
-
-    theta2 = np.linspace(0, 2*np.pi, 120)
-
-    x2 = np.linspace(-longitud/2, longitud/2, 120)
-
-    y2 = r*np.cos(theta2)
-
-    z2 = r*np.sin(theta2)
-
-    fig.add_trace(
-
-        go.Scatter3d(
-
-            x=x2,
-            y=y2,
-            z=z2,
-
-            mode="lines",
-
-            line=dict(
-
-                color="cyan",
-
-                width=intensidad
-
-            ),
-
-            opacity=0.35,
-
-            showlegend=False
-
-        )
-
-    )
-
-    st.divider()
-
-    st.subheader("Intensidad del campo")
-
-if B < 0.001:
-    st.info("🟦 Campo magnético débil")
-elif B < 0.003:
-    st.success("🟩 Campo magnético medio")
-elif B < 0.006:
-    st.warning("🟨 Campo magnético fuerte")
-else:
-    st.error("🟥 Campo magnético muy intenso")
