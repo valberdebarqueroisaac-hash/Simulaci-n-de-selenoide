@@ -219,7 +219,7 @@ fig.update_layout(
             )
 
         )
-
+st.write("Número de trazas:", len(fig.data))
 st.plotly_chart(
             fig,
             use_container_width=True
