@@ -1,9 +1,13 @@
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle
+import plotly.graph_objects as go
+import pandas as pd
 
-# Configuración de la página
+# ---------------------------------------
+# CONFIGURACIÓN
+# ---------------------------------------
+
 st.set_page_config(
     page_title="Simulación del Campo Magnético",
     page_icon="🧲",
@@ -11,67 +15,115 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+# ---------------------------------------
+# ESTILO
+# ---------------------------------------
+
+st.markdown("""
+<style>
+
+h1{
+    color:#F8F9FA;
+}
+
+h2{
+    color:#58A6FF;
+}
+
+[data-testid="stMetricValue"]{
+    font-size:35px;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+# ---------------------------------------
+# TÍTULO
+# ---------------------------------------
+
 st.title("🧲 Simulación del Campo Magnético en un Solenoide")
 
-st.write("""
-Esta simulación utiliza el modelo ideal del solenoide:
-
-B = μ₀ · (N/L) · I
-
-donde:
-- B = Campo magnético (T)
-- μ₀ = Permeabilidad del vacío
-- N = Número de espiras
-- L = Longitud del solenoide (m)
-- I = Corriente (A)
+st.markdown("""
+Explora cómo la corriente, el número de espiras y la longitud afectan el campo magnético generado por un **solenoide ideal**.
 """)
 
-# Constante
-mu0 = 4 * np.pi * 1e-7
+st.divider()
 
-# Parámetros
-st.sidebar.header("Parámetros")
+# ---------------------------------------
+# BARRA LATERAL
+# ---------------------------------------
 
-I = st.sidebar.slider("Corriente (A)", 0.0, 10.0, 2.0, 0.1)
-N = st.sidebar.slider("Número de espiras", 10, 1000, 200, 10)
-L = st.sidebar.slider("Longitud (m)", 0.05, 2.0, 0.50, 0.01)
+st.sidebar.header("⚙️ Parámetros")
 
-# Cálculo
-n = N / L
-B = mu0 * n * I
+I = st.sidebar.slider(
+    "Corriente I (A)",
+    0.0,
+    10.0,
+    3.70,
+    0.01
+)
+
+N = st.sidebar.slider(
+    "Número de espiras N",
+    10,
+    2000,
+    520,
+    10
+)
+
+L = st.sidebar.slider(
+    "Longitud L (m)",
+    0.05,
+    2.0,
+    0.50,
+    0.01
+)
+
+# ---------------------------------------
+# CÁLCULOS
+# ---------------------------------------
+
+mu0 = 4*np.pi*1e-7
+
+n = N/L
+
+B = mu0*n*I
+
+# ---------------------------------------
+# PANEL LATERAL
+# ---------------------------------------
+
+st.sidebar.divider()
+
+st.sidebar.info(f"""
+
+### Información
+
+**Permeabilidad del vacío (μ₀)**
+
+4π × 10⁻⁷ T·m/A
+
+---
+
+**Densidad de espiras**
+
+{n:.2f} espiras/m
+
+---
+
+**Modelo**
+
+Solenoide ideal
+
+""")
+
+# ---------------------------------------
+# PESTAÑAS
+# ---------------------------------------
+
 tab1, tab2, tab3, tab4 = st.tabs([
     "🧲 Visualización",
     "📈 Gráficas",
     "⚖️ Comparación",
     "✅ Validación"
 ])
-
-with tab1:
-
-    st.subheader("Resultados")
-
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.metric("Campo Magnético (T)", f"{B:.6e}")
-
-    with col2:
-        st.metric("Densidad de espiras", f"{n:.2f} espiras/m")
-            st.subheader("Visualización del Solenoide")
-
-    fig, ax = plt.subplots(figsize=(12,3))
-
-    vueltas = int(N/20)
-
-    for i in range(vueltas):
-        x = i
-        circ = Circle((x,0),0.45,fill=False,linewidth=2)
-        ax.add_patch(circ)
-
-    ax.set_xlim(-1,vueltas+1)
-    ax.set_ylim(-1,1)
-
-    ax.set_aspect('equal')
-    ax.axis("off")
-
-    st.pyplot(fig)
