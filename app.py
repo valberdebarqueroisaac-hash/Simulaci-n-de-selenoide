@@ -287,7 +287,7 @@ with col2:
 
         st.pyplot(fig2)
 
-    st.divider()
+st.divider()
 
     # ==========================
     # B vs Longitud
