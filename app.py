@@ -211,9 +211,7 @@ with tab1:
             fig,
             use_container_width=True
         )
-                st.metric(
-            "Campo Magnético",
-            f"{B:.5e} T"
+            st.metric("Campo Magnético",f"{B:.5e} T"
         )
 
         st.metric(
