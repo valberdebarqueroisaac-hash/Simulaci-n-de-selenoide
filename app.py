@@ -166,20 +166,29 @@ with tab1:
         z = radio*np.sin(theta)
 
         fig = go.Figure()
+        # Elegir el color según la intensidad del campo
+if B < 0.001:
+    color_solenoide = "#1E90FF"      # Azul
+elif B < 0.003:
+    color_solenoide = "#00CC66"      # Verde
+elif B < 0.006:
+    color_solenoide = "#FFD700"      # Amarillo
+else:
+    color_solenoide = "#FF3333"      # Rojo
 
-        fig.add_trace(
-            go.Scatter3d(
-                x=x,
-                y=y,
-                z=z,
-                mode="lines",
-                line=dict(
-                    color="orange",
-                    width=8
-                ),
-                name="Solenoide"
-            )
-        )
+fig.add_trace(
+    go.Scatter3d(
+        x=x,
+        y=y,
+        z=z,
+        mode="lines",
+        line=dict(
+            color=color_solenoide,
+            width=8
+        ),
+        name="Solenoide"
+    )
+)
         fig.update_layout(
 
             height=650,
