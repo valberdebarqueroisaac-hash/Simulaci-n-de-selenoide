@@ -211,24 +211,6 @@ with tab1:
             fig,
             use_container_width=True
         )
-            st.metric("Campo Magnético",
-                f"{B:.5e} T"
-        )
-
-        st.metric(
-            "Densidad",
-            f"{n:.2f}"
-        )
-
-        st.metric(
-            "Espiras",
-            N
-        )
-
-        st.metric(
-            "Corriente",
-            f"{I:.2f} A"
-        )
 # ==========================================
 # PESTAÑA 2 - GRÁFICAS
 # ==========================================
@@ -266,6 +248,26 @@ with tab2:
     # ==========================
 
     with col2:
+
+    st.metric(
+        "Campo Magnético",
+        f"{B:.5e} T"
+    )
+
+    st.metric(
+        "Densidad",
+        f"{n:.2f}"
+    )
+
+    st.metric(
+        "Espiras",
+        N
+    )
+
+    st.metric(
+        "Corriente",
+        f"{I:.2f} A"
+    )
 
         espiras = np.linspace(10,2000,100)
 
