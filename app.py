@@ -219,6 +219,28 @@ fig.update_layout(
             )
 
         )
+# ===============================
+# Núcleo del solenoide
+# ===============================
+
+for ang in np.linspace(0, 2*np.pi, 16):
+
+    y_nucleo = 0.65 * np.cos(ang)
+    z_nucleo = 0.65 * np.sin(ang)
+
+    fig.add_trace(
+        go.Scatter3d(
+            x=[-longitud/2, longitud/2],
+            y=[y_nucleo, y_nucleo],
+            z=[z_nucleo, z_nucleo],
+            mode="lines",
+            line=dict(
+                color="lightgray",
+                width=2
+            ),
+            showlegend=False
+        )
+    )
 st.plotly_chart(
             fig,
             use_container_width=True
