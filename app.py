@@ -78,6 +78,10 @@ L = st.sidebar.slider(
     0.50,
     0.01
 )
+mostrar_campo = st.sidebar.checkbox(
+    "Mostrar líneas de campo",
+    value=True
+)
 
 # ---------------------------------------
 # CÁLCULOS
