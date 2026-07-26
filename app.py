@@ -376,24 +376,24 @@ with tab3:
             "Campo Magnético",
             f"{BB:.5e} T"
         )
-            st.divider()
+        st.divider()
 
-    if BA > BB:
+        if BA > BB:
 
-        diferencia = ((BA - BB) / BB) * 100 if BB != 0 else 0
+            diferencia = ((BA - BB) / BB) * 100 if BB != 0 else 0
 
-        st.success(
-            f"✅ El Solenoide A genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
-        )
+            st.success(
+                f"✅ El Solenoide A genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
+            )
 
-    elif BB > BA:
+        elif BB > BA:
 
-        diferencia = ((BB - BA) / BA) * 100 if BA != 0 else 0
+            diferencia = ((BB - BA) / BA) * 100 if BA != 0 else 0
 
-        st.success(
-            f"✅ El Solenoide B genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
-        )
+            st.success(
+                f"✅ El Solenoide B genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
+            )
 
-    else:
+        else:
 
-        st.info("Ambos solenoides generan el mismo campo magnético.")
+            st.info("Ambos solenoides generan el mismo campo magnético.")
