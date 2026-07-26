@@ -189,7 +189,7 @@ fig.add_trace(
         name="Solenoide"
     )
 )
- fig.update_layout(
+fig.update_layout(
 
             height=650,
 
