@@ -270,3 +270,117 @@ with tab2:
     plt.grid(True)
 
     st.pyplot(fig3)
+# ==========================================
+# PESTAÑA 3 - COMPARACIÓN
+# ==========================================
+
+with tab3:
+
+    st.header("Comparación entre dos solenoides")
+
+    colA, colB = st.columns(2)
+
+    # -------------------------
+    # SOLENOIDE A
+    # -------------------------
+
+    with colA:
+
+        st.subheader("🧲 Solenoide A")
+
+        IA = st.slider(
+            "Corriente A (A)",
+            0.0,
+            10.0,
+            I,
+            0.1,
+            key="IA"
+        )
+
+        NA = st.slider(
+            "Espiras A",
+            10,
+            2000,
+            N,
+            10,
+            key="NA"
+        )
+
+        LA = st.slider(
+            "Longitud A (m)",
+            0.05,
+            2.0,
+            L,
+            0.01,
+            key="LA"
+        )
+
+        BA = mu0 * (NA / LA) * IA
+
+        st.metric(
+            "Campo Magnético",
+            f"{BA:.5e} T"
+        )
+
+    # -------------------------
+    # SOLENOIDE B
+    # -------------------------
+
+    with colB:
+
+        st.subheader("🧲 Solenoide B")
+
+        IB = st.slider(
+            "Corriente B (A)",
+            0.0,
+            10.0,
+            5.0,
+            0.1,
+            key="IB"
+        )
+
+        NB = st.slider(
+            "Espiras B",
+            10,
+            2000,
+            1000,
+            10,
+            key="NB"
+        )
+
+        LB = st.slider(
+            "Longitud B (m)",
+            0.05,
+            2.0,
+            0.80,
+            0.01,
+            key="LB"
+        )
+
+        BB = mu0 * (NB / LB) * IB
+
+        st.metric(
+            "Campo Magnético",
+            f"{BB:.5e} T"
+        )
+        st.divider()
+
+if BA > BB:
+
+    diferencia = ((BA - BB) / BB) * 100 if BB != 0 else 0
+
+    st.success(
+        f"✅ El Solenoide A genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
+    )
+
+elif BB > BA:
+
+    diferencia = ((BB - BA) / BA) * 100 if BA != 0 else 0
+
+    st.success(
+        f"✅ El Solenoide B genera un campo magnético aproximadamente {diferencia:.2f}% mayor."
+    )
+
+else:
+
+    st.info("Ambos solenoides generan el mismo campo magnético.")
