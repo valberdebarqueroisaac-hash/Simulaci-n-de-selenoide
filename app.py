@@ -249,22 +249,22 @@ with tab2:
 
     with col2:
 
-     st.metric(
+        st.metric(
         "Campo Magnético",
         f"{B:.5e} T"
     )
 
-     st.metric(
+        st.metric(
         "Densidad",
         f"{n:.2f}"
     )
 
-     st.metric(
+        st.metric(
         "Espiras",
         N
     )
 
-     st.metric(
+        st.metric(
         "Corriente",
         f"{I:.2f} A"
     )
