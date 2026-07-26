@@ -274,15 +274,4 @@ for r in np.linspace(1.8, 3.2, 5):
             "Corriente",
             f"{I:.2f} A"
         )
-        st.divider()
-
-st.subheader("Intensidad del campo")
-
-if B < 0.001:
-    st.info("🟦 Campo magnético débil")
-elif B < 0.003:
-    st.success("🟩 Campo magnético medio")
-elif B < 0.006:
-    st.warning("🟨 Campo magnético fuerte")
-else:
-    st.error("🟥 Campo magnético muy intenso")
+   
