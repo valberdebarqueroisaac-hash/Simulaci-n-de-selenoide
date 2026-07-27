@@ -184,7 +184,7 @@ else:
     color_campo = "#FF3333"      # Rojo
     descripcion = "Campo muy fuerte"
 
-        fig = go.Figure()
+fig = go.Figure()
         # Elegir el color según la intensidad del campo
 if B < 0.001:
     color_solenoide = "#1E90FF"      # Azul
