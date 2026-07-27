@@ -320,6 +320,23 @@ st.plotly_chart(
             fig,
             use_container_width=True
         )
+st.markdown("---")
+
+st.subheader("Intensidad del Campo Magnético")
+
+st.markdown(f"""
+🔵 **Azul:** Campo débil
+
+🟢 **Verde:** Campo moderado
+
+🟡 **Amarillo:** Campo fuerte
+
+🔴 **Rojo:** Campo muy fuerte
+
+### Estado actual:
+
+**{descripcion}**
+""")
 # ==========================================
 # PESTAÑA 2 - GRÁFICAS
 # ==========================================
