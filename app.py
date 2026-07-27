@@ -202,9 +202,9 @@ fig.add_trace(
         z=z,
         mode="lines",
         line=dict(
-            color=color_solenoide,
+            color=color_campo,
             width=8
-        ),
+    )
         name="Solenoide"
     )
 )
