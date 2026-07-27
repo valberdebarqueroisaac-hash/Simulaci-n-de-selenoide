@@ -204,7 +204,7 @@ fig.add_trace(
         line=dict(
             color=color_campo,
             width=8
-    )
+        )
         name="Solenoide"
     )
 )
