@@ -276,7 +276,10 @@ for pos in np.linspace(-longitud/2 + 1, longitud/2 - 1, 8):
             w=[0],
             sizemode="absolute",
             sizeref=0.45,
-            colorscale="Blues",
+            colorscale=[
+                [0, color_campo],
+                [1, color_campo]
+            ],
             showscale=False,
             anchor="tail",
             name="Campo"
@@ -306,8 +309,8 @@ if mostrar_campo:
                 z=z_campo,
                 mode="lines",
                 line=dict(
-                    color="deepskyblue",
-                    width=3
+                    color=color_campo,
+                    width=4
                 ),
                 opacity=0.6,
                 showlegend=False
