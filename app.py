@@ -164,6 +164,25 @@ with tab1:
         y = radio*np.cos(theta)
 
         z = radio*np.sin(theta)
+# =========================================
+# Color según la intensidad del campo
+# =========================================
+
+if B < 0.001:
+    color_campo = "#1E90FF"      # Azul
+    descripcion = "Campo débil"
+
+elif B < 0.003:
+    color_campo = "#00CC66"      # Verde
+    descripcion = "Campo moderado"
+
+elif B < 0.006:
+    color_campo = "#FFD700"      # Amarillo
+    descripcion = "Campo fuerte"
+
+else:
+    color_campo = "#FF3333"      # Rojo
+    descripcion = "Campo muy fuerte"
 
         fig = go.Figure()
         # Elegir el color según la intensidad del campo
